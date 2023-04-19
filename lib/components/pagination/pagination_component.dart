@@ -2,10 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-getSecondaryColor(Color primaryColor) {
-  return primaryColor.computeLuminance() > 0.5 ? Colors.black : Colors.white;
-}
+import 'package:flwebkit/components/pagination/utils.dart';
 
 enum PaginationButtonStyle { icon, text, both }
 
@@ -36,11 +33,18 @@ class PaginationComponent extends HookWidget {
     var currentPage = useState(1);
     var startPage = useState(1);
 
+    print(currentPage.value);
+
     useEffect(() {
       onPageChanged?.call(currentPage.value);
 
       if (currentPage.value > startPage.value + paginationButtonsCount) {
-        startPage.value = min(currentPage.value, pagesCount);
+        var difference = pagesCount - currentPage.value;
+        if (difference < paginationButtonsCount) {
+          startPage.value = max(1, pagesCount - paginationButtonsCount);
+        } else {
+          startPage.value = min(currentPage.value, pagesCount);
+        }
       } else if (currentPage.value < startPage.value) {
         startPage.value = max(1, currentPage.value - paginationButtonsCount);
       }
