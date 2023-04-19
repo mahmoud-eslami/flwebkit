@@ -1,7 +1,7 @@
 # Flutter Web Kit
 
 <p align="center">
-  <img src="/path/to/logo.png" width="200" height="200" style="display: block; margin: 0 auto;">
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/logo-no-background.png" width=300 style="display: block; margin: 0 auto;">
 </p>
 
 <p align="center">
@@ -13,11 +13,16 @@
 
 Flutter Web Kit is an open-source project that provides a collection of components to help developers build responsive web applications using Flutter. The project was created to help simplify the development process for Flutter web applications, providing a set of pre-built components that can be easily used to build UIs.
 
-## Components
+## Widgets
 
-Flutter Web Kit includes the following components:
+Flutter Web Kit includes the following Widgets:
 
-<!-- - **AppBar**: A top app bar that displays the app's name, navigation menu, and other actions. -->
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/pagination.png" style="display: block; margin: 0 auto;">
+</p>
+
+- **Pagination**: Pagination widget allows for customizable pagination with ease, providing a smooth and intuitive user experience.
 
 
 ## Contributing

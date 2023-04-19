@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flwebkit/components/pagination/utils.dart';
+
+import 'color_model.dart';
 
 enum PaginationButtonStyle { icon, text, both }
 
@@ -12,11 +13,27 @@ class PaginationComponent extends HookWidget {
     required this.pagesCount,
     required this.onPageChanged,
     required this.style,
+    this.forceDisableButtons = false,
+    this.colors = const ColorModel(
+      activeBorderColor: Colors.black,
+      inactiveBorderColor: Colors.grey,
+      activeTextColor: Colors.white,
+      inactiveTextColor: Colors.grey,
+      activeBackgroundColor: Colors.black,
+      inactiveBackgroundColor: Colors.white,
+      activeIconColor: Colors.white,
+      inactiveIconColor: Colors.grey,
+      selectedPageButtonBackgroundColor: Colors.black,
+      pageButtonBackgroundColor: Colors.white,
+      selectedPageButtonBorderColor: Colors.black,
+      pageButtonBorderColor: Colors.grey,
+      selectedPageButtonTextColor: Colors.white,
+      pageButtonTextColor: Colors.grey,
+    ),
     this.borderRadius = 5,
     this.paginationButtonsCount = 5,
     this.height = 40,
     this.buttonsMargin = 5,
-    this.primaryColor = Colors.black,
     this.prevWidget,
     this.nextWidget,
   }) : super(key: key);
@@ -24,16 +41,15 @@ class PaginationComponent extends HookWidget {
   final int pagesCount, paginationButtonsCount;
   final PaginationButtonStyle style;
   final double height, buttonsMargin, borderRadius;
-  final Color primaryColor;
   final ValueChanged<int>? onPageChanged;
   final Widget? prevWidget, nextWidget;
+  final ColorModel colors;
+  final bool forceDisableButtons;
 
   @override
   Widget build(BuildContext context) {
     var currentPage = useState(1);
     var startPage = useState(1);
-
-    print(currentPage.value);
 
     useEffect(() {
       onPageChanged?.call(currentPage.value);
@@ -58,6 +74,7 @@ class PaginationComponent extends HookWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           PaginationButton(
+            forceDisabled: forceDisableButtons,
             mainChild: prevWidget,
             iconSize: height - 5,
             enabled: currentPage.value > 1,
@@ -71,7 +88,7 @@ class PaginationComponent extends HookWidget {
             icon: Icons.arrow_back,
             height: height,
             text: "Previous",
-            primaryColor: primaryColor,
+            colors: colors,
           ),
           SizedBox(
             width: buttonsMargin,
@@ -88,11 +105,13 @@ class PaginationComponent extends HookWidget {
                 ),
                 decoration: BoxDecoration(
                   color: currentPage.value == i
-                      ? primaryColor
-                      : Colors.transparent,
+                      ? colors.selectedPageButtonBackgroundColor
+                      : colors.pageButtonBackgroundColor,
                   borderRadius: BorderRadius.circular(borderRadius),
                   border: Border.all(
-                    color: primaryColor,
+                    color: currentPage.value == i
+                        ? colors.selectedPageButtonBorderColor
+                        : colors.pageButtonBorderColor,
                     width: 1.5,
                   ),
                 ),
@@ -103,8 +122,8 @@ class PaginationComponent extends HookWidget {
                     "$i",
                     style: TextStyle(
                       color: currentPage.value == i
-                          ? getSecondaryColor(primaryColor)
-                          : primaryColor,
+                          ? colors.selectedPageButtonTextColor
+                          : colors.pageButtonTextColor,
                     ),
                   ),
                 ),
@@ -114,6 +133,7 @@ class PaginationComponent extends HookWidget {
             width: buttonsMargin,
           ),
           PaginationButton(
+            forceDisabled: forceDisableButtons,
             mainChild: nextWidget,
             iconSize: height - 5,
             enabled: currentPage.value < pagesCount,
@@ -127,7 +147,7 @@ class PaginationComponent extends HookWidget {
             icon: Icons.arrow_forward,
             height: height,
             text: "Next",
-            primaryColor: primaryColor,
+            colors: colors,
           ),
         ],
       ),
@@ -141,10 +161,11 @@ class PaginationButton extends StatelessWidget {
       required this.style,
       required this.height,
       required this.onPressed,
-      required this.primaryColor,
+      required this.colors,
       required this.radius,
       required this.enabled,
       required this.iconSize,
+      required this.forceDisabled,
       this.mainChild,
       this.text,
       this.icon});
@@ -155,13 +176,13 @@ class PaginationButton extends StatelessWidget {
   final String? text;
   final double height, radius, iconSize;
   final VoidCallback? onPressed;
-  final Color primaryColor;
-  final bool enabled;
+  final ColorModel colors;
+  final bool enabled, forceDisabled;
 
   @override
   Widget build(BuildContext context) {
     TextStyle tStyle = TextStyle(
-      color: enabled ? getSecondaryColor(primaryColor) : Colors.grey,
+      color: enabled ? colors.activeTextColor : colors.inactiveTextColor,
     );
     Widget child;
     if (mainChild != null) {
@@ -169,7 +190,7 @@ class PaginationButton extends StatelessWidget {
     } else if (style == PaginationButtonStyle.icon) {
       child = Icon(
         icon ?? Icons.star,
-        color: enabled ? getSecondaryColor(primaryColor) : Colors.grey,
+        color: enabled ? colors.activeIconColor : colors.inactiveIconColor,
         size: iconSize,
       );
     } else if (style == PaginationButtonStyle.text) {
@@ -190,7 +211,7 @@ class PaginationButton extends StatelessWidget {
           ),
           Icon(
             icon,
-            color: enabled ? getSecondaryColor(primaryColor) : Colors.grey,
+            color: enabled ? colors.activeIconColor : colors.inactiveIconColor,
             size: iconSize,
           ),
         ],
@@ -199,15 +220,18 @@ class PaginationButton extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        onPressed?.call();
+        if (!forceDisabled) onPressed?.call();
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          color: enabled ? primaryColor : Colors.transparent,
+          color: enabled
+              ? colors.activeBackgroundColor
+              : colors.inactiveBackgroundColor,
           borderRadius: BorderRadius.circular(radius),
           border: Border.all(
-            color: enabled ? primaryColor : Colors.grey,
+            color:
+                enabled ? colors.activeBorderColor : colors.inactiveBorderColor,
             width: 1.5,
           ),
         ),
