@@ -17,14 +17,28 @@ Flutter Web Kit is an open-source project that provides a collection of componen
 
 Flutter Web Kit includes the following Widgets:
 
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/pagination.png" style="display: block; margin: 0 auto;">
-</p>
+---
 
 - **Pagination**: Pagination widget allows for customizable pagination with ease, providing a smooth and intuitive user experience.
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/pagination_full_sample.png" width=500>
+</p>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/pagination.png" width=400>
+</p>
+
+---
+
+- **interactive image slider**: Interactive image slider allows for slide smoothly between images
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/interactive_img_1.png" width=400>
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/interactive_img_2.png" width=400>
+</p>
+
+---
 ## Contributing
 
 If you're interested in contributing to Flutter Web Kit, check out the [Contributing Guide](./docs/contributing.md) for more information.
