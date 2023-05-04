@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flwebkit/components/interactive_images/interactive_images_page.dart';
 import 'package:flwebkit/components/pagination/pagination_page.dart';
 
 class BasePage extends StatelessWidget {
@@ -21,6 +22,18 @@ class BasePage extends StatelessWidget {
                         ));
                   },
                   child: const Text("Pagination")),
+            ),
+            const SizedBox(height: 10),
+            Center(
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const InteractiveImagesPage(),
+                        ));
+                  },
+                  child: const Text("Interactive images")),
             ),
           ],
         ),
