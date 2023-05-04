@@ -22,7 +22,10 @@ Flutter Web Kit includes the following Widgets:
 - **interactive image slider**: Interactive image slider allows for slide smoothly between images
 
 <p align="center">
-  <video width="100%" src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/isample.mp4" alt="interactive image example"></video>
+  <video width="600" height="315" controls>
+  <source src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/isample.mp4" type="video/mp4">
+</video>
+
 </p>
 
 <p align="center">
