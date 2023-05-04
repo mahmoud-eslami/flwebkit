@@ -19,6 +19,19 @@ Flutter Web Kit includes the following Widgets:
 
 ---
 
+- **interactive image slider**: Interactive image slider allows for slide smoothly between images
+
+<p align="center">
+  <video width="100%" src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/isample.mp4" alt="interactive image example"></video>
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/interactive_img_1.png" width=400>
+  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/interactive_img_2.png" width=400>
+</p>
+
+---
+
 - **Pagination**: Pagination widget allows for customizable pagination with ease, providing a smooth and intuitive user experience.
 
 <p align="center">
@@ -31,14 +44,6 @@ Flutter Web Kit includes the following Widgets:
 
 ---
 
-- **interactive image slider**: Interactive image slider allows for slide smoothly between images
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/interactive_img_1.png" width=400>
-  <img src="https://raw.githubusercontent.com/mahmoud-eslami/resume/hide-contribute/flwebkit/interactive_img_2.png" width=400>
-</p>
-
----
 ## Contributing
 
 If you're interested in contributing to Flutter Web Kit, check out the [Contributing Guide](./docs/contributing.md) for more information.
